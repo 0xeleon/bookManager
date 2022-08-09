@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  managebookapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3001"
+    links:
+      - mongoomanagebook
+    volumes:
+      - .:/home/app
+  mongoomanagebook:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=eduardo
+      - MONGO_INITDB_ROOT_PASSWORD=edu4rd0
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
