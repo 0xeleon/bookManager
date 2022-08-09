@@ -1,8 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import mongoose from './db/connection.js'
+import mongoose from './db/connection.js';
 // define routes
-import bookRoutes from './routes/book.route.js'
+import bookRoutes from './routes/book.route.js';
+import reviewRoutes from './routes/review.route.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ const pathApi = '/api/v1';
 
 // define routes
 app.use(pathApi, bookRoutes);
+app.use(pathApi, reviewRoutes);
 
 app.get('/test', async(_req, res) =>{
     return  res.send('ok');
