@@ -1,4 +1,4 @@
-import { BookModel } from '../db/models/book.model.js';
+import BookModel from '../db/models/book.model.js';
 
 /**
  * Function to get the active books
@@ -10,9 +10,9 @@ import { BookModel } from '../db/models/book.model.js';
 const getBooks = async (req, res, next) => {   
     try{
         let books = await BookModel.find({active : true});
-        return res.status(200).send(books)
+        return res.status(200).send(books);
     }catch(err){
-        return res.status(500).send({'error' : 'A error happend contact admin'})
+        return res.status(500).send({'error' : 'A error happend contact admin'});
     }
 }
 
@@ -27,10 +27,10 @@ const createBook = async (req, res, next) => {
     try{
         req.body._id = req.body.id;
         delete req.body.id;
-        let book = await BookModel.create(req.body)
+        let book = await BookModel.create(req.body);
         return res.status(200).send(book);
     }catch(err){
-        return res.status(500).send({'error' : 'A error happend contact admin'})
+        return res.status(500).send({'error' : 'A error happend contact admin'});
     }
 }
 
@@ -45,14 +45,12 @@ const updateBook = async (req, res, next) => {
     try{
         let book = await BookModel.findOneAndUpdate(
             { _id: req.query.id },
-            {
-              $set: req.body,
-            },
+            { $set: req.body },
             { new : true }
-        )
-        return res.status(200).send(book)
+        );
+        return res.status(200).send(book);
     }catch(err){
-        return res.status(500).send({'error' : 'A error happend contact admin'})
+        return res.status(500).send({'error' : 'A error happend contact admin'});
     }
 }
 
@@ -67,12 +65,12 @@ const deleteBook = async (req, res, next) => {
     try{
         let book = await BookModel.findOneAndUpdate(
             { _id: req.query.id },
-            { $set: {active : false}, },
+            { $set: {active : false} },
             { new : true }
         )
-        return res.status(200).send(book)
+        return res.status(200).send(book);
     }catch(err){
-        return res.status(500).send({'error' : 'A error happend contact admin'})
+        return res.status(500).send({'error' : 'A error happend contact admin'});
     }
 }
 

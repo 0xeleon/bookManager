@@ -48,6 +48,4 @@ bookRoutes.delete('/book', validateDelete, (req, res, next) =>{
     }
 }, deleteBook);
 
-
-
-export default bookRoutes
+export default bookRoutes;
