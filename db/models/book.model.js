@@ -19,6 +19,10 @@ const BookModel = new mongoose.model('Book', new mongoose.Schema({
     dateRelease : {
         type : Date,
         required: true,
+    },
+    active : {
+        type : Boolean,
+        default : true
     }
 }));
 
